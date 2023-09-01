@@ -1,4 +1,6 @@
 import 'dotenv/config.js';
+import cors from 'cors'
+import './config/database.js'
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
@@ -14,6 +16,7 @@ import{__filename}from './utils.js'
 const app = express();
 
 // view engine setup
+app.use(cors())
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -22,7 +25,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
