@@ -5,12 +5,13 @@ import {Schema,model,Types }from "mongoose";
 
 let collection = 'users'
 let schema = new Schema({
-  name:{type:String, required:true},
   email:{type:String, required:true},
-  passsword:{type:String, required:true},
+  password:{type:String, required:true},
   photo:{type:String, required:true},
   role:{type:Number, default:0 },
-  online: {type:String, required:false}
+  online: {type:Boolean, default:false}, /* Cuando se conecta cambia a true */
+  verified: {type: Boolean, default:true},
+  verify_code: {type: String, required: true}
 }, {
   timestamps:true /* fecha de documentos */
 })

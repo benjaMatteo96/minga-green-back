@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+/* import usersRouter from './routes/users.js'; */
 
 import{__dirname}from './utils.js'
 import{__filename}from './utils.js'
