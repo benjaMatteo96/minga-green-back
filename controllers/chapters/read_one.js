@@ -29,6 +29,7 @@ async function readOneChapters(req, res, next) {
     if (nextChapter) {
       response.next = nextChapter._id;
     }
+    
 
     // const  chapter realiza  la consulta para obtener el capitulo y sus paginas//
     if (!chapter) {

@@ -54,7 +54,7 @@ export default app;
   en la barra de navegación agregar el botón correspondiente con el título Mangas
 Si el usuario no está logueado debe re-dirigir hacia NotAllowed	 */
 
-const isAuthenticated = checkUserAuthentication(req);
+/* const isAuthenticated = checkUserAuthentication(req);
 if (isAuthenticated) {
   // Renderizar la página de Mangas
   res.render('mangas');
@@ -68,4 +68,4 @@ app.get('/notallowed',
   (req, res) => {
     // Renderizar la página de NotAllowed   
     res.render('notallowed');
-  });
+  }); */
