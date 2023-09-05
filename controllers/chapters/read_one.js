@@ -15,6 +15,21 @@ async function readOneChapters(req, res, next) {
     const mangaId = req.query.manga_id
     // const MangaId  almacena la solicitud  a travez del ID //
     const chapter = await Chapter.findById(chapterId)
+
+    // Obtener el número de capítulo actual desde tu modelo.
+    const currentChapterNumber = chapter.order;
+
+    // Encontrar el capítulo siguiente en función del número de capítulo actual.
+    const nextChapter = await Chapter.findOne({
+      manga_id: mangaId,
+      chapterNumber: currentChapterNumber + 1,
+    });
+
+    // Si el próximo capítulo existe, agregar su ID a la respuesta bajo la propiedad "next".
+    if (nextChapter) {
+      response.next = nextChapter._id;
+    }
+
     // const  chapter realiza  la consulta para obtener el capitulo y sus paginas//
     if (!chapter) {
       return res.status(404).json({ message: "capitulo no encontrado" });
@@ -26,8 +41,13 @@ async function readOneChapters(req, res, next) {
       pages: chapter.pages
     }
     res.json(response);
-  } catch (error) {
 
+  } catch (error) {
+    {
+      console.error("Error en readOneChapters:", error);
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
   }
 }
 
+export default readOneChapters
