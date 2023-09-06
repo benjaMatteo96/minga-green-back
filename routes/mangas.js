@@ -1,9 +1,9 @@
 import express  from 'express';
+import getAllMangas from '../controllers/mangas/read.js';
+
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('estamos en mangas');
-});
+router.get('/', getAllMangas );
 
 export default  router;
