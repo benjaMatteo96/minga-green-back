@@ -26,9 +26,18 @@ async function readOneChapters(req, res, next) {
       order: currentChapterNumber + 1,
     });
 
+    const previousChapter = await Chapter.findOne({
+      manga_id: chapter.manga_id,
+      order: currentChapterNumber - 1,
+    });
+
     // Si el próximo capítulo existe, agregar su ID a la respuesta bajo la propiedad "nextChapter".
     if (nextChapter) {
       response.nextChapter = nextChapter._id;
+    }
+
+    if (previousChapter) {
+      response.previousChapter = previousChapter._id;
     }
 
     res.json(response);
