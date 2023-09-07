@@ -1,11 +1,15 @@
 import Chapter from '../../models/Chapter.js'
 
 async function readOneChapters(req, res, next) {
+  //req = la solicitud que realiza el usuario.
+  // res= la Respuesta  a esa solicitud 
+
   try {
     let { id } = req.params;
     console.log(req.params);
     const chapter = await Chapter.findById(id);
-
+    //chapter = almacena los capitulos por su ID. a travez de la propiedad findById .
+    // condicion mensaje de error.//
     if (!chapter) {
       return res.status(404).json({ message: "Capítulo no encontrado" });
     }
@@ -17,7 +21,7 @@ async function readOneChapters(req, res, next) {
       pages: chapter.pages,
     };
 
-    // Obtener el número de capítulo actual desde tu modelo.
+    // Obtener el número de capítulo actual desde  la base de datos//
     const currentChapterNumber = chapter.order;
 
     // Encontrar el capítulo siguiente en función del número de capítulo actual.
