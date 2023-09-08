@@ -10,7 +10,6 @@
     "author": "node ./models/data/authors.js",
     "users": "node ./models/data/users.js",
     "categories": "node ./models/data/categories.js"
-
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
