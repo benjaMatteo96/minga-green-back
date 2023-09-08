@@ -1,3 +1,4 @@
+
 import Manga from "../../models/Manga.js"; 
 
 async function getAllMangas(req, res, next) {
@@ -13,6 +14,7 @@ async function getAllMangas(req, res, next) {
     if (req.query.category) queries['category_id'] = req.query.category.split(",")
 
     let count = await Manga.estimatedDocumentCount()
+
 
     let mangas = await Manga.find(queries)
       .populate("category_id", "name -_id") 
@@ -34,3 +36,4 @@ async function getAllMangas(req, res, next) {
 }
 
 export default getAllMangas; 
+

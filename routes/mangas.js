@@ -6,4 +6,4 @@ const router = express.Router();
 /* GET users listing. */
 router.get('/', getAllMangas );
 
-export default  router;
+export default router;
