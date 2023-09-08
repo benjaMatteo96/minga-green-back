@@ -1,5 +1,4 @@
 import Chapter from '../../models/Chapter.js'
-
 async function readOneChapters(req, res, next) {
   try {
     let { id } = req.params;
@@ -49,3 +48,4 @@ async function readOneChapters(req, res, next) {
 }
 
 export default readOneChapters;
+
