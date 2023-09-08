@@ -1,5 +1,5 @@
 import Chapter from "../../models/Chapter.js"
-import Manga from "../../models/Manga.js"
+
 
 
 const getPaginatedChapters = async (req, res) => {
