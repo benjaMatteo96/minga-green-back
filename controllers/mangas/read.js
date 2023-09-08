@@ -1,4 +1,17 @@
 
+
+
+//export default async function (req, res) {
+  //try {
+  //const mangas = await Manga.find()
+      //return res.status(200).json({
+              //success: true,
+              //response: 'ok',
+              //message : '/mangas',
+              //mangas: mangas
+      //});
+  //} catch (error) {
+
 import Manga from "../../models/Manga.js"; 
 
 async function getAllMangas(req, res, next) {

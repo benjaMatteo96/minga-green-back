@@ -1,4 +1,5 @@
 import { Schema,Types,model } from "mongoose"
+
 import Category from './Category.js'
 import Author from './Author.js'
 
@@ -12,6 +13,7 @@ let schema = new Schema({
     company_id: {
         type: Types.ObjectId,
     },
+
     title: { type:String,required:true },
     cover_photo: { type:String,required:true },
     description: { type:String,required:true },
