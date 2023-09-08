@@ -1,14 +1,51 @@
- import chapters from "../../routes/chapters.js"
+import Chapter from '../../models/Chapter.js'
+async function readOneChapters(req, res, next) {
+  try {
+    let { id } = req.params;
+    console.log(req.params);
+    const chapter = await Chapter.findById(id);
 
- export default function (req, res) { /* Cambiar por una funcion nombrada dentro de una variable
- como hice en read de users */
-   try {
-       return res.status(200).json({
-               success: true,
-               response: 'ok',
-               message : '/chapters'
-       });
-   } catch (error) {
+    if (!chapter) {
+      return res.status(404).json({ message: "Capítulo no encontrado" });
+    }
 
-   }
- }
+    // Declarar la variable response antes de asignar valores a sus propiedades.
+    const response = {
+      id: chapter._id,
+      title: chapter.title,
+      pages: chapter.pages,
+    };
+
+    // Obtener el número de capítulo actual desde tu modelo.
+    const currentChapterNumber = chapter.order;
+
+    // Encontrar el capítulo siguiente en función del número de capítulo actual.
+    const nextChapter = await Chapter.findOne({
+      manga_id: chapter.manga_id,
+      order: currentChapterNumber + 1,
+    });
+
+    const previousChapter = await Chapter.findOne({
+      manga_id: chapter.manga_id,
+      order: currentChapterNumber - 1,
+    });
+
+    // Si el próximo capítulo existe, agregar su ID a la respuesta bajo la propiedad "nextChapter".
+    if (nextChapter) {
+      response.nextChapter = nextChapter._id;
+    }
+
+    if (previousChapter) {
+      response.previousChapter = previousChapter._id;
+    }
+
+    res.json(response);
+
+  } catch (error) {
+    console.error("Error en readOneChapters:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+}
+
+export default readOneChapters;
+

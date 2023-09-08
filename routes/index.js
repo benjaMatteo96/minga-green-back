@@ -12,7 +12,7 @@ router.use('/auth', userRouter);/* usuario */
 
 router.use('/authors', authorsRouter);
 
-router.use('/chapters', chaptersRouter);
+router.use('/chapters', chaptersRouter); 
 
 router.use('/mangas', mangasRouter);
 
