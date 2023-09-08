@@ -38,7 +38,7 @@ async function getAllMangas(req, res, next) {
       .limit(pagination.limit > 0 ? pagination.limit : 0) //limita
 
     return res.status(200).json({
-      mangas,
+      mangas: mangas,
       count,
       prev: pagination.page > 1 ? pagination.page - 1 : null,
       next: pagination.page * pagination.limit < count ? pagination.page + 1 : null,
