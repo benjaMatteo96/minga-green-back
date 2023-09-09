@@ -16,7 +16,7 @@ router.use('/chapters', chaptersRouter);
 
 router.use('/mangas', mangasRouter);
 
-router.use ('/categories',categoriesRouter)
+router.use('/categories',categoriesRouter)
 
 export default  router;
 

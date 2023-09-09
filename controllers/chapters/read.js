@@ -1,5 +1,7 @@
 import Chapter from "../../models/Chapter.js"
 
+
+
 const getPaginatedChapters = async (req, res) => {
   try {
     const mangaId = req.query.manga_id;
