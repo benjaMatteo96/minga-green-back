@@ -1,3 +1,17 @@
+
+
+
+//export default async function (req, res) {
+  //try {
+  //const mangas = await Manga.find()
+      //return res.status(200).json({
+              //success: true,
+              //response: 'ok',
+              //message : '/mangas',
+              //mangas: mangas
+      //});
+  //} catch (error) {
+
 import Manga from "../../models/Manga.js"; 
 
 async function getAllMangas(req, res, next) {
@@ -15,6 +29,7 @@ async function getAllMangas(req, res, next) {
 
     let count = await Manga.estimatedDocumentCount()
 
+
     let mangas = await Manga.find(queries)
       .populate("category_id", "name -_id") 
       .populate("author_id", "name -_id") 
@@ -24,7 +39,7 @@ async function getAllMangas(req, res, next) {
       .limit(pagination.limit > 0 ? pagination.limit : 0) //limita
 
     return res.status(200).json({
-      mangas,
+      mangas: mangas,
       count,
       prev: pagination.page > 1 ? pagination.page - 1 : null,
       next: pagination.page * pagination.limit < count ? pagination.page + 1 : null,
@@ -35,3 +50,4 @@ async function getAllMangas(req, res, next) {
 }
 
 export default getAllMangas; 
+

@@ -9,8 +9,6 @@ import {updateUser} from '../controllers/users/update.js'//actualizar
 import {deleteUser} from '../controllers/users/delete.js'//eliminar
  */
 
-
-
 const router = express.Router();
 
 /* GET users listing. */
