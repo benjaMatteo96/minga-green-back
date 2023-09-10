@@ -1,6 +1,7 @@
 import { Schema,Types,model } from "mongoose"
 import Category from '../models/Category.js'
 import Author from '../models/Author.js'
+
 let collection = 'mangas'
 let schema = new Schema({
 

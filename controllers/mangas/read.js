@@ -1,10 +1,11 @@
 import Manga from "../../models/Manga.js"; 
 
 async function getAllMangas(req, res, next) {
+  
   try {
     let queries = {}
     let pagination = { page: 1, limit: 4 }
-    let order = "asc" /* para que el orden se lo de en la pet */
+    let order = "asc" /* para que el orden se lo de en la peticion */
 
     if (req.query.order) order = req.query.order
     if (req.query.page) pagination.page = req.query.page
