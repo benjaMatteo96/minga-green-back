@@ -7,6 +7,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+
 import indexRouter from './routes/index.js';
 /* import usersRouter from './routes/users.js'; */
 
@@ -69,3 +70,10 @@ app.get('/notallowed',
     // Renderizar la página de NotAllowed   
     res.render('notallowed');
   }); */
+
+
+// M01 enpoints (sprint3)//
+//enrutador para el registro de usuarios.//
+
+const express = require('express');
+const registerRouter = express.Router();
