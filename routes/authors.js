@@ -6,11 +6,13 @@ import validadorAuthor from '../schema/validatorAuthor.js'
 import validator from '../middleware/validator.js';
 import passport from '../middleware/passport.js';
 import hasPermission from '../middleware/has_permition.js'
+
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', read);
-router.get('/me', readAuthors);
+router.get('/', function(req, res, next) {
+  res.send('etsamos en authors');
+});
 
 router.post('/create',  passport.authenticate('jwt', {session: false}), validator(validadorAuthor), hasPermission, createOneAuthor); //crear
 

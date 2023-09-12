@@ -1,9 +1,9 @@
-import express from 'express';
-import readOneChapters from '../controllers/chapters/read_one.js '
-import getPaginatedChapters from '../controllers/chapters/read.js'
+import express  from 'express';
 const router = express.Router();
 
-router.get('/', getPaginatedChapters);
-router.get('/:id', readOneChapters);
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('etsamos en chapters');
+});
 
-export default router
+export default  router;
