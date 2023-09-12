@@ -1,62 +1,52 @@
-import Manga from "../../models/Manga.js"
-import Category from "../../models/Category.js"
 
-async function getAllMangas(req, res) {
+
+
+//export default async function (req, res) {
+  //try {
+  //const mangas = await Manga.find()
+      //return res.status(200).json({
+              //success: true,
+              //response: 'ok',
+              //message : '/mangas',
+              //mangas: mangas
+      //});
+  //} catch (error) {
+
+import Manga from "../../models/Manga.js"; 
+
+async function getAllMangas(req, res, next) {
   try {
-    /* Se captura la pagina */
-    const page = parseInt(req.query.page) || 1; // Página actual, por defecto 1. Si la pagina no existe, es 1 por defecto.
-    const perPage = 4; // Número de resultados por página
+    let queries = {}
+    let pagination = { page: 1, limit: 4 }
+    let order = "asc" /* para que el orden se lo de en la pet */
 
-    let mangaQuery = Manga.find({
-      $and: [
-        { title: { $regex: new RegExp(req.query.title, 'i') } }, // 'i' hace que la búsqueda sea insensible a mayúsculas y minúsculas
-        {
-          category_id: {
-            $in: (await Category.find({ name: req.query.categories.split(',') })).map((c) => c._id),
-          },
-        },
-      ],
-    })
-      .select('title author description')// Solo selecciona los campos deseados
+    if (req.query.order) order = req.query.order
+    if (req.query.page) pagination.page = req.query.page
+    if (req.query.quantity) pagination.limit = req.query.quantity
+    if (req.query.title) queries.title = new RegExp(req.query.title, 'i')
+    if (req.query.category) queries['category_id'] = req.query.category.split(",")
 
- // Calcular las páginas totales
- const totalPages = Math.ceil(mangaQuery / perPage);
-
- // Calcular la página previa y siguiente
- const prevPage = page > 1 ? page - 1 : null;
- const nextPage = page < totalPages ? page + 1 : null;
-
- const mangas = await mangaQuery
-   .sort({ title: 1 })
-   .skip((page - 1) * perPage)
-   .limit(perPage);
-
- // Construir la respuesta JSON con propiedades estandar
- const response = {
-   mangas,
-   prev: prevPage,
-   next: nextPage,
- };
-
- res.json(response);
-} catch (error) {
- console.log(error);
-}
-}
-
-export default getAllMangas
+    let count = await Manga.estimatedDocumentCount()
 
 
+    let mangas = await Manga.find(queries)
+      .populate("category_id", "name -_id") 
+      .populate("author_id", "name -_id") 
+      .sort({ title: order })
+      .select("title author_id cover_photo category description")
+      .skip(pagination.page > 0 ? (pagination.page - 1) * pagination.limit : 0) //recorta
+      .limit(pagination.limit > 0 ? pagination.limit : 0) //limita
 
- /*   
-    const mangas = await mangaQuery
-      .sort({ title: 1 }) // Orden alfabético ascendente por título
-      .skip((page - 1) * perPage) // Salta los resultados de las páginas anteriores
-      .limit(perPage); // Límite de resultados por página
-
-    res.json(mangas);
+    return res.status(200).json({
+      mangas: mangas,
+      count,
+      prev: pagination.page > 1 ? pagination.page - 1 : null,
+      next: pagination.page * pagination.limit < count ? pagination.page + 1 : null,
+    });
   } catch (error) {
-    console.log(error)
-
+    return res.status(500).json({ message: "Error interno del servidor." });
   }
-   */
+}
+
+export default getAllMangas; 
+

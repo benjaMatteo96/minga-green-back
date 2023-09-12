@@ -1,5 +1,4 @@
 import Chapter from '../../models/Chapter.js'
-
 async function readOneChapters(req, res, next) {
   //req = la solicitud que realiza el usuario.
   // res= la Respuesta  a esa solicitud 
@@ -53,3 +52,4 @@ async function readOneChapters(req, res, next) {
 }
 
 export default readOneChapters;
+

@@ -1,8 +1,9 @@
 import express from 'express';
-const chapterRouter = express.Router();
 import readOneChapters from '../controllers/chapters/read_one.js '
+import getPaginatedChapters from '../controllers/chapters/read.js'
+const router = express.Router();
 
-// Enruta la solicitud GET a '/chapter/:id' al controlador readOneChapters.
-chapterRouter.get('/:id', readOneChapters);
+router.get('/', getPaginatedChapters);
+router.get('/:id', readOneChapters);
 
-export default chapterRouter;
+export default router
