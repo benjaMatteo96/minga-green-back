@@ -6,7 +6,6 @@ import registerUser from '../controllers/users/register.js'
 en este caso usamos el nombre getUser para importar el controlador read de user. */
 import getUser from '../controllers/users/read.js' //leer
 import validator from '../middlewares/validator.js'
-import estructuraUser from '../schemas/uservalidator.js';
 
 /* import {createUser} from '../controllers/users/create.js'//crear
 import {updateUser} from '../controllers/users/update.js'//actualizar
