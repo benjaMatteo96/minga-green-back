@@ -6,6 +6,8 @@ import userSchema from '../schema/userSchema.js';
 import passport from '../middlewares/passport.js';
 import signout from '../controllers/users/signout.js';
 
+
+
 const router = express.Router();
 
 router.get('/', getUser);

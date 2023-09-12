@@ -1,4 +1,4 @@
-
+import mangas from "../../routes/mangas.js"
 
 
 //export default async function (req, res) {
@@ -15,10 +15,11 @@
 import Manga from "../../models/Manga.js"; 
 
 async function getAllMangas(req, res, next) {
+  
   try {
     let queries = {}
     let pagination = { page: 1, limit: 4 }
-    let order = "asc" /* para que el orden se lo de en la pet */
+    let order = "asc" /* para que el orden se lo de en la peticion */
 
     if (req.query.order) order = req.query.order
     if (req.query.page) pagination.page = req.query.page
@@ -43,10 +44,8 @@ async function getAllMangas(req, res, next) {
       prev: pagination.page > 1 ? pagination.page - 1 : null,
       next: pagination.page * pagination.limit < count ? pagination.page + 1 : null,
     });
+
   } catch (error) {
-    return res.status(500).json({ message: "Error interno del servidor." });
+
   }
 }
-
-export default getAllMangas; 
-
