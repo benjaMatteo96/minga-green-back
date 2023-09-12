@@ -1,4 +1,4 @@
-
+import mangas from "../../routes/mangas.js"
 
 
 //export default async function (req, res) {
@@ -44,10 +44,8 @@ async function getAllMangas(req, res, next) {
       prev: pagination.page > 1 ? pagination.page - 1 : null,
       next: pagination.page * pagination.limit < count ? pagination.page + 1 : null,
     });
+
   } catch (error) {
-    return res.status(500).json({ message: "Error interno del servidor." });
+
   }
 }
-
-export default getAllMangas; 
-
