@@ -1,4 +1,6 @@
 import express from 'express';
+import registerUser from '../controllers/users/register.js'
+
 
 /* cuando se exporta por default se puede importar usando cualquier nombre 
 en este caso usamos el nombre getUser para importar el controlador read de user. */
@@ -22,11 +24,9 @@ router.delete('/:id', deleteUser); //eliminar */
 
 // M01- endpoint//
 
-import express from 'express';
 
 
 // Importacion de  el controlador de registro//
-import registerUser from '../controllers/users/register.js'
 
 //  aca Defini la ruta POST para el registro de usuarios//
 router.post('/', registerUser); //crear

@@ -1,5 +1,5 @@
 // Importacion  del  módulo//
-import User from '../../models/User'  // Modelo de usuario
+import User from '../../models/User.js'  // Modelo de usuario
 import bcrypt from 'bcryptjs'
 
 // Función de controlador para el registro de usuarios
@@ -29,7 +29,7 @@ async function registerUser(req, res, next) {
         // Crea un nuevo usuario con los datos proporcionados, incluyendo la contraseña cifrada
         const newUser = await User.create({
             email,
-            password,
+            password: hashedPassword,
             photo,
             role
         })
