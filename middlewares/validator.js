@@ -1,4 +1,5 @@
 // aca va mi funcion middlewares//
+// M01 : ENDPOINTS
 
 const validator = (schema) => (req, res, next) => {
     const validation = schema.validate(req.body, {
