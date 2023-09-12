@@ -5,6 +5,8 @@ import registerUser from '../controllers/users/register.js'
 /* cuando se exporta por default se puede importar usando cualquier nombre 
 en este caso usamos el nombre getUser para importar el controlador read de user. */
 import getUser from '../controllers/users/read.js' //leer
+import validator from '../middlewares/validator.js'
+import estructuraUser from '../schemas/uservalidator.js';
 
 /* import {createUser} from '../controllers/users/create.js'//crear
 import {updateUser} from '../controllers/users/update.js'//actualizar
@@ -29,7 +31,7 @@ router.delete('/:id', deleteUser); //eliminar */
 // Importacion de  el controlador de registro//
 
 //  aca Defini la ruta POST para el registro de usuarios//
-router.post('/', registerUser); //crear
+router.post('/register', validator(estructuraUser), registerUser); //crear
 
 
 export default router;

@@ -2,6 +2,8 @@
 import User from '../../models/User.js'  // Modelo de usuario
 import bcrypt from 'bcryptjs'
 
+
+
 // Función de controlador para el registro de usuarios
 async function registerUser(req, res, next) {
     // Obtiene los datos del cuerpo de la solicitud
