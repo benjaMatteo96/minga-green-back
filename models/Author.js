@@ -5,7 +5,7 @@ User
 let collection = "authors"
 let schema = new Schema({
     name: { type: String, required: true },
-    last_name: { type: String },
+    last_name: { type: String, required:true },
     city: { type: String, required: true },
     country: { type: String, required: true },
     date: { type: Date },
