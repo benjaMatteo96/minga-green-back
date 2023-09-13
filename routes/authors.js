@@ -1,8 +1,8 @@
 import express  from 'express';
-import readAuthors from '../controllers/authors/read_me.js';
-import read from '../controllers/authors/read.js';
+/* import readAuthors from '../controllers/authors/read_me.js';
+import read from '../controllers/authors/read.js'; */
 import createOneAuthor from '../controllers/authors/create.js' //crear
-import validadorAuthor from '../schemaValidator/validatorAuthor.js'
+import validadorAuthor from '../schema/validatorAuthor.js'
 import validator from '../middleware/validator.js';
 import passport from '../middleware/passport.js';
 import hasPermission from '../middleware/has_permition.js'
