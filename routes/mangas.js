@@ -4,7 +4,6 @@ import readOneManga from '../controllers/mangas/read_one.js';
 import getPaginatedChapters from '../controllers/mangas/read.js'
 import getAllMangas from '../controllers/mangas/read.js';
 import readNews from "../controllers/mangas/read_news.js"
-
 const router = express.Router();
 
 router.get('/', getAllMangas );

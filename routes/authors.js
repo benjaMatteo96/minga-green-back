@@ -4,6 +4,8 @@ import validadorAuthor from '../schema/validatorAuthor.js'; // Importa el valida
 import validator from '../middleware/validator.js'; // Importa el middleware de validación
 import passport from '../middleware/passport.js'; // Importa el middleware de autenticación
 import hasPermission from '../middleware/has_permition.js';// Importa el middleware de permisos
+import readAuthors from '../controllers/authors/read_me.js';
+import read from '../controllers/authors/read.js';
 
 const router = express.Router();
 
@@ -15,6 +17,10 @@ router.post(
   hasPermission, // Middleware de permisos
   createOneAuthor // Controlador para crear un autor
 );
+
+/* GET users listing. */
+router.get('/', read);
+router.get('/me', readAuthors);
 
 export default router;
 
