@@ -1,23 +1,24 @@
-import express  from 'express';
-import readAuthors from '../controllers/authors/read_me.js';
-import read from '../controllers/authors/read.js';
-import createOneAuthor from '../controllers/authors/create.js' //crear
-import validadorAuthor from '../schema/validatorAuthor.js'
-import validator from '../middleware/validator.js';
-import passport from '../middleware/passport.js';
-import hasPermission from '../middleware/has_permition.js'
+import express from 'express';
+import createOneAuthor from '../controllers/authors/create.js'; // Importa la función para crear autores
+import validadorAuthor from '../schema/validatorAuthor.js'; // Importa el validador de autor
+import validator from '../middleware/validator.js'; // Importa el middleware de validación
+import passport from '../middleware/passport.js'; // Importa el middleware de autenticación
+import hasPermission from '../middleware/has_permition.js';// Importa el middleware de permisos
 
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('etsamos en authors');
-});
+// Ruta para crear un nuevo autor
+router.post(
+  '/', // La ruta POST que manejará la creación de autores
+  passport.authenticate('jwt', { session: false }), // Middleware de autenticación JWT
+  validator(validadorAuthor), // Middleware de validación utilizando el validador
+  hasPermission, // Middleware de permisos
+  createOneAuthor // Controlador para crear un autor
+);
 
-router.post('/create',  passport.authenticate('jwt', {session: false}), validator(validadorAuthor), hasPermission, createOneAuthor); //crear
-
-
-export default  router;
+export default router;
 
 /* border bottom 
 outline*/
+
+  
