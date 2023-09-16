@@ -5,6 +5,7 @@ import validator from '../middlewares/validator.js';
 import userSchema from '../schema/userSchema.js';
 import passport from '../middlewares/passport.js';
 import signout from '../controllers/users/signout.js';
+import registerUser from '../controllers/users/register.js';
 
 
 
@@ -16,5 +17,15 @@ router.post('/signout', validator(userSchema), passport.authenticate(
   'jwt',
   { session: false }
 ), signout)
+// M01- endpoint//
+
+
+
+// Importacion de  el controlador de registro//
+
+//  aca Defini la ruta POST para el registro de usuarios//
+router.post('/register', /*validator(estructuraUser),*/ registerUser); //crear
+
 
 export default router;
+
