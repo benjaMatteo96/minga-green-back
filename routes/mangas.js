@@ -6,8 +6,8 @@ import getAllMangas from '../controllers/mangas/read.js';
 import readNews from "../controllers/mangas/read_news.js"
 import validatorMangaSchema from '../schema/validatorMangaSchema.js';
 import createManga from '../controllers/mangas/create.js';
-import passport from '../middlewares/passport.js';
-import validator from '../middlewares/validator.js';
+import passport from '../middleware/passport.js';
+import validator from '../middleware/validator.js';
 
 const router = express.Router();
 
