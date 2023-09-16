@@ -1,12 +1,12 @@
 import express from 'express';
 import getUser from '../controllers/users/read.js' //leer
 import signinController from '../controllers/users/signin.js';
-import validator from '../middlewares/validator.js';
+import validator from '../middleware/validator.js';
 import userSchema from '../schema/userSchema.js';
-import passport from '../middlewares/passport.js';
+import passport from '../middleware/passport.js';
 import signout from '../controllers/users/signout.js';
-import registerUser from '../controllers/users/register.js';
-import estructuraUser from '../schemas/uservalidator.js';
+import registerUser from '../controllers/users/register.js'
+import estructuraUser from '../schema/uservalidator.js';
 
 /* cuando se exporta por default se puede importar usando cualquier nombre 
 en este caso usamos el nombre getUser para importar el controlador read de user. */
