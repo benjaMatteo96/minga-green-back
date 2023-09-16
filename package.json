@@ -12,11 +12,8 @@
     "categories": "node ./models/data/categories.js"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "@reduxjs/toolkit": "^1.9.5",
     "bcrypt": "^5.1.1",
->>>>>>> 67ad5dd459c22a639f4d3d8a8a34f1dee327e31c
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
