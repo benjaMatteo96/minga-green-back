@@ -24,6 +24,15 @@ router.post('/signout', validator(userSchema), passport.authenticate(
   'jwt',
   { session: false }
 ), signout)
+// M01- endpoint//
+
+
+
+// Importacion de  el controlador de registro//
+
+//  aca Defini la ruta POST para el registro de usuarios//
+router.post('/register', /*validator(estructuraUser),*/ registerUser); //crear
+
 
 router.get('/', getUser); //leer
 router.post('/register', validator(estructuraUser), registerUser); //crear
@@ -35,4 +44,3 @@ export default router;
 // Importacion de  el controlador de registro//
 
 //  aca Defini la ruta POST para el registro de usuarios//
-

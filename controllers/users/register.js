@@ -1,4 +1,7 @@
 // Importacion  del  módulo//
+
+// M01 ENDPOINTS//
+
 import User from '../../models/User.js'  // Modelo de usuario
 import bcrypt from 'bcryptjs'
 
