@@ -18,6 +18,7 @@ export default passport.use(
                     return done(null)
                 }
             } catch (error) {
+                console.log('saraza', error)
                 return done(error)
             }
         }

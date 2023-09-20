@@ -10,10 +10,11 @@ import passport from '../middleware/passport.js';
 import validator from '../middleware/validator.js';
 import getMyMangas from '../controllers/mangas/get_me.js';
 import updateManga from '../controllers/mangas/update.js';
-import finds_id from '../middleware/find_id.js';
-import is_active from '../middleware/is_active.js';
+import finds_id from '../middleware/find_id_m01.js';
+import is_active from '../middleware/is_active_m01.js';
 import isPropertyOf from '../middleware/is-property-of.js';
 import updateMangaSchema from '../schema/updateValidatorManga.js';
+
 
 const router = express.Router();
 
