@@ -1,5 +1,4 @@
-const validator = (schema) => [
-    (req, res, next) => {
+const validator = (schema) => (req, res, next) => {
         const validation = schema.validate(req.body, {abortEarly: false})
         console.log(req.body)
         if(validation.error){
@@ -11,5 +10,5 @@ const validator = (schema) => [
         } return next()
     }
 
-]
+
 export default validator 
