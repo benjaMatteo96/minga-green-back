@@ -8,6 +8,10 @@ import validatorMangaSchema from '../schema/validatorMangaSchema.js';
 import createManga from '../controllers/mangas/create.js';
 import passport from '../middleware/passport.js';
 import validator from '../middleware/validator.js';
+import create from '../controllers/mangas/create.js';
+import findCategory from '../middleware/findCategory.js'
+import mangaValidationSchema from '../schema/mangaSchema.js';
+
 
 const router = express.Router();
 
@@ -15,12 +19,19 @@ router.get('/', getAllMangas );
 router.get('/:id', readOneManga);
 router.get('/news', readNews);
 router.post(
-    '/', // La ruta POST que manejará la creación de autores
-    passport.authenticate('jwt', { session: false }), // Middleware de autenticación JWT
-    validator(validatorMangaSchema), // Middleware de validación utilizando el validador y su schema
-    createManga // Controlador para crear un manga
+    '/', 
+    passport.authenticate('jwt', { session: false }),
+    validator(validatorMangaSchema), 
+    findCategory, createManga 
   );
-//router.get('/api/mangas/:id', getPaginatedChapters);
+  
+// router.post('/', findCategory, create)
+// router.post('/', passport.authenticate(
+//     'jwt', 
+//     {session: false}
+// ), validator(mangaValidationSchema), create)
+
+
 
 export default router;
 
