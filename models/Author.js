@@ -11,8 +11,7 @@ let schema = new Schema({
     date: { type: Date },
     photo: { type: String, required: true },
     user_id: {
-        type: Types.
-        ObjectId, 
+        type: Types.ObjectId, 
         required: true,
         ref: User
     },

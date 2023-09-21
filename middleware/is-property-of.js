@@ -1,19 +1,30 @@
-// M01-middlewares para verificar que el autor que quieree crear un capitulo es el mismo dueño que
-//creo el manga//
-const isPropertyOf = () => async (req, res, next) => {
+import Manga from '../models/Manga.js';
 
-    if (req.manga.author_id.toString() === req.author._id.toString()) {
-        // El autor es el dueño del manga, permitir el acceso
-        next();
-    } else {
-
-        res.status(403).json({
-            success: false,
-            Response: null,
-            message: ['not allow']
-        });
+export default async function is_property_of(req, res, next) {
+  try {
+    let mangaFind = await Manga.findOne({ _id: req.query.manga_id });
+    console.log('mangaFinddddd',mangaFind)
+    
+    if (!mangaFind) {
+      return res.json({
+        success: false,
+        message: "Manga not found with the given ID"
+      });
     }
+
+    if (req.author._id.toString() === mangaFind.author_id.toString()) {
+      return next();
+    }
+
+    return res.json({
+      success: false,
+      message: "You are not the owner of this manga"
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error"
+    });
+  }
 }
-
-export default isPropertyOf;
-
