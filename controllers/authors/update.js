@@ -1,6 +1,5 @@
-// controllers(M03-endpoints)//
-import author from '../../models/Author'
-import passport from 'passport'
+// controllers(M03-endpoints)//(sprint4)
+
 
 // funcion controllers para el manejo de solicitud PUT de cambiar el rol
 // de un usuario comun a autor//
@@ -9,10 +8,13 @@ const updateController = async (req, res) => {
 
     try {
         // Paso 1: Obteniendo  el usuario a modificar del middleware finds_id
-        const userToModify =
+        const userToModify = req.author;
 
-            // Paso 2: aca se cambia la propiedad 'active' a true o false para modificar el rol
-            userToModify.active = !userToModify.active;
+        if (!userToModify) {
+            return res.status(404).json({ message: 'Autor no encontrado' });
+        }
+        // Paso 2: aca se cambia la propiedad 'active' a true o false para modificar el rol
+        userToModify.active = !userToModify.active;
 
         // Paso 3: Guardar los cambios en la base de datos
         await userToModify.save();

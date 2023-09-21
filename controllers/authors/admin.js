@@ -1,23 +1,31 @@
 // controllers Administrador (M03-endpoints)//
 
-import author from '../../models/Author'
-import passport from 'passport'
+import Author from '../../models/Author'
+
 
 // funcion controlador para  manejo de solicitud GET (autores activos e inactivos)//
 const controllerAdmins = async (req, res) => {
     try {
-        // obteniendo informacion del usuario auutenticando  con (passport)//
-        const { _id, name, email, } = req.user;
+
+        // Verificar si el usuario autenticado tiene permisos de administrador
+        if (!req.user || req.user.role !== 'admin') {
+            return res.status(403).json({ message: 'Acceso denegado. Se requieren permisos de administrador.' });
+        }
 
         // Paso 2: Buscar autores activos e inactivos en la base de datos
-        const activeAuthors = await User.find({ role: 'author', active: true });
-        const inactiveAuthors = await User.find({ role: 'author', active: false });
+
+        const activeAuthors = await Author.find({ active: true });
+        const inactiveAuthors = await Author.find({ active: false });
 
         // Paso 3: Responder con los autores activos e inactivos.
         res.status(200).json({
-            user: { _id, name, email }, // Información del usuario autenticado
-            activeAuthors, // Autores activos
-            inactiveAuthors, // Autores inactivos
+            user: {
+                _id: req.user._id,
+                name: req.user.name,
+                email: req.user.email,
+            },
+            activeAuthors,
+            inactiveAuthors,
         });
 
     }
