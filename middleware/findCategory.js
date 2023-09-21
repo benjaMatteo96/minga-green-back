@@ -3,7 +3,7 @@ import create from "../controllers/mangas/create.js"
 
 const findCategory = async (req, res, next) => {
     try {
-        const category = await Category.findOne({ name: req.body.category_id }); // Sin comillas simples
+        const category = await Category.findOne({ name: req.body.category_id }); 
         console.log(category);
         if (category) {
             req.body.category_id = category._id;
