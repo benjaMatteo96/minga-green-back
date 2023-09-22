@@ -1,4 +1,5 @@
 import Comment from "../../models/Comment.js";
+import User from "../../models/User.js";
 
 const controllerComments = 
     async (req, res, next) => {
@@ -10,6 +11,8 @@ const controllerComments =
                 {new: true}
             ) 
             if (updateComments){
+                const user = await User.findById(req.user._id).select("photo mail");
+                updateComments.user_id=user;
                 return res.status(200).json({response: updateComments})
             } else {
                 return res.status(404).json({response: "not found"})

@@ -1,14 +1,18 @@
 import { Schema, model, Types } from "mongoose";
 
+
+
 let collection = 'comments'
 let schema = new Schema({
     chapter_id:{
         type: Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'Chapter'
     },
     user_id:{
         type: Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'users'
     },
     text:{type:String,required: true},
 }, {

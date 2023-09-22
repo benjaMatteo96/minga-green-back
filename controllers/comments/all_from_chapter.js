@@ -1,4 +1,5 @@
 import Comment from "../../models/Comment.js";
+import User from "../../models/User.js";
 
 export const getAllCommentsFromChapter = async (req, res, next) => {
   try {
@@ -17,10 +18,11 @@ export const getAllCommentsFromChapter = async (req, res, next) => {
     };
 
     const comments = await Comment.find(query)
+      .populate({path: "user_id"})
       .sort({ createdAt: "desc" })
       .skip(skip)
       .limit(limit)
-      .select("-user_id -created_at manga_id"); // Excluir datos sensibles
+      .select("-created_at"); // Excluir datos sensibles
 
     // Obtén la cantidad total de comentarios para calcular el número de páginas
     const totalComments = await Comment.countDocuments(query);
