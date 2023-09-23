@@ -15,6 +15,10 @@ import is_active from '../middleware/is_active_m01.js';
 import isPropertyOf from '../middleware/is_property_off_benja.js';
 import updateMangaSchema from '../schema/updateValidatorManga.js';
 import destroyManga from '../controllers/mangas/destroy.js';
+import create from '../controllers/mangas/create.js';
+import findCategory from '../middleware/findCategory.js'
+import mangaValidationSchema from '../schema/mangaSchema.js';
+
 
 
 const router = express.Router();
@@ -25,6 +29,7 @@ router.get('/:id', readOneManga);
 router.put('/:id', passport.authenticate('jwt', { session: false }), /* finds_id, is_active, */ /* isPropertyOf,  */ /* validator(updateMangaSchema), */ updateManga);
 router.get('/news', readNews);
 router.post(
+
   '/', // La ruta POST que manejará la creación de autores
   passport.authenticate('jwt', { session: false }), // Middleware de autenticación JWT
   validator(validatorMangaSchema), // Middleware de validación utilizando el validador y su schema
@@ -33,6 +38,21 @@ router.post(
 router.delete('/:id', passport.authenticate('jwt', { session: false }),finds_id, /*  is_active,isPropertyOf, */ destroyManga);
 
 //router.get('/api/mangas/:id', getPaginatedChapters);
+
+    '/', 
+    passport.authenticate('jwt', { session: false }),
+    validator(validatorMangaSchema), 
+    findCategory, createManga 
+  );
+  
+// router.post('/', findCategory, create)
+// router.post('/', passport.authenticate(
+//     'jwt', 
+//     {session: false}
+// ), validator(mangaValidationSchema), create)
+
+
+
 
 export default router;
 
