@@ -17,10 +17,6 @@ const updateMangaSchema = Joi.object({
       'string.empty': 'La descripción es un campo requerido.',
       'string.min': 'La descripción debe tener al menos {#limit} caracteres.',
       'string.max': 'La descripción no debe superar los {#limit} caracteres.',
-    }),
-    category_id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).messages({
-      'string.empty': 'La categoría es un campo requerido.',
-      'string.pattern.base': 'La categoría debe ser un ID válido.',
     })
   }).min(1);
   

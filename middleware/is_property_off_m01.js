@@ -1,31 +1,35 @@
-import Manga from "../models/Manga";
-import Author from "../models/Author";
+import Manga from "../models/Manga.js";
 
-// Middleware para cargar el manga y el autor antes de verificar la propiedad
-const loadMangaAndAuthor = async (req, res, next) => {
+// Middleware para verificar si el autor autenticado es el propietario del manga
+const isPropertyOf = () => async (req, res, next) => {
   try {
-    // Aquí debes cargar el manga y el autor desde la base de datos según el ID proporcionado en req.params.id
-    // Luego, asigna la información del manga a req.manga y la información del autor a req.author
+    const { _id } = req.params;
 
-    // Por ejemplo:
-    const manga = await Manga.findById(req.params.id);
-    const author = await Author.findById(manga.author_id);
+    // Obtén el manga por su ID
+    const manga = await Manga.findById(_id);
 
-    if (!manga || !author) {
+    if (!manga) {
       return res.status(404).json({
         success: false,
         Response: null,
-        message: ['Manga o autor no encontrado.'],
+        message: ['Manga no encontrado.'],
       });
     }
 
-    req.manga = manga;
-    req.author = author;
+    // Verifica si el autor autenticado es el propietario del manga
+    if (manga.author_id.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        success: false,
+        Response: null,
+        message: ['No tienes permiso para actualizar este manga.'],
+      });
+    }
 
+    // Si todo está en orden, permite el acceso
     next();
   } catch (error) {
     next(error);
   }
 };
 
-export default loadMangaAndAuthor;
+export default isPropertyOf;
