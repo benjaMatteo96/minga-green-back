@@ -5,7 +5,7 @@ const signOutController =  async (req,res,next)=>{
     await User.findOneAndUpdate(
       {email:req.user.email},
       {online:false}
-    ).save()
+    )
     return res.status(200).json({
       message:'User signout!'
     })
