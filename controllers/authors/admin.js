@@ -1,6 +1,6 @@
 // controllers Administrador (M03-endpoints)//
 
-import Author from '../../models/Author'
+import Author from '../../models/Author.js'
 
 
 // funcion controlador para  manejo de solicitud GET (autores activos e inactivos)//
@@ -8,7 +8,7 @@ const controllerAdmins = async (req, res) => {
     try {
 
         // Verificar si el usuario autenticado tiene permisos de administrador
-        if (!req.user || req.user.role !== 'admin') {
+        if (!req.user || req.user.role !== 3) {
             return res.status(403).json({ message: 'Acceso denegado. Se requieren permisos de administrador.' });
         }
 

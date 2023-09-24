@@ -7,8 +7,6 @@ import hasPermission from '../middleware/has_permition.js';// Importa el middlew
 import readAuthors from '../controllers/authors/read_me.js';
 import read from '../controllers/authors/read.js';
 import controllerAdmins from '../controllers/authors/admin.js';
-import passport from '../middleware/passport.js';
-import updateController from '../controllers/authors/update.js';
 import updateController from '../controllers/authors/update.js';
 import findAuthorById from '../middleware/finds_id-admin.js';
 
@@ -29,7 +27,7 @@ router.get('/', read);
 router.get('/me', readAuthors);
 
 /* M03-endpoin (sprint 4)Ruta GET para obtener autores activos e inactivos */
-router.get('/api/authors/admin',
+router.get('/admin',
   passport.authenticate('jwt', { session: false }), // Autenticación con Passport.
   controllerAdmins
 );
@@ -37,7 +35,7 @@ router.get('/api/authors/admin',
 //M03-ENDPOINTSH(SPRINT4 ) 
 //Ruta PUT para modificar el rol de un usuario común a autor
 
-router.put('/api/auth/role/author/:id',
+router.put('/admin/:id',
   passport.authenticate('jwt', { session: false }), // Autenticación con Passport.js
   findAuthorById, // Middleware para buscar el ID del usuario a modificar
   updateController // controlador para cambiar el rol//
