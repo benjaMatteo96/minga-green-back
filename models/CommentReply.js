@@ -2,7 +2,7 @@ import { Schema, model, Types } from "mongoose";
 
 
 
-let collection = 'reply_comments'
+let collection = 'reply'
 let schema = new Schema({
     comment_id:{
         type: Types.ObjectId,
