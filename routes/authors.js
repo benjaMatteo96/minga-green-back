@@ -7,8 +7,6 @@ import hasPermission from '../middleware/has_permition.js';// Importa el middlew
 import readAuthors from '../controllers/authors/read_me.js';
 import read from '../controllers/authors/read.js';
 import controllerAdmins from '../controllers/authors/admin.js';
-import passport from '../middleware/passport.js';
-import updateController from '../controllers/authors/update.js';
 import updateController from '../controllers/authors/update.js';
 import findAuthorById from '../middleware/finds_id-admin.js';
 

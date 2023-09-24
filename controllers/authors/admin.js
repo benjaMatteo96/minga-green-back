@@ -1,6 +1,6 @@
 // controllers Administrador (M03-endpoints)//
 
-import Author from '../../models/Author'
+import Author from '../../models/Author.js'
 
 
 // funcion controlador para  manejo de solicitud GET (autores activos e inactivos)//
