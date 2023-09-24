@@ -8,7 +8,8 @@ const destroyComment = async (req, res, next) => {
             const user = await User.findById(req.user._id).select("photo email");
             destroyComment.user_id= user;
             return res.status(200).json({ 
-                response:  "destroy comment" });
+                response: "destroy comment",
+            comment_id: req.params.id });
         } else {
             return res.status(404).json({
                  response: "not found" });
