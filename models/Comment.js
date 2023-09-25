@@ -18,6 +18,10 @@ let schema = new Schema({
         ref: 'users'
     },
     text:{type:String,required: true},
+    replies_id: {
+        type: Types.ObjectId,
+        ref: 'reply'
+    }
 }, {
     timestamps:true
 })

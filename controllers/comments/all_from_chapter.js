@@ -1,4 +1,5 @@
 import Comment from "../../models/Comment.js";
+import CommentReply from "../../models/CommentReply.js"
 import User from "../../models/User.js";
 
 export const getAllCommentsFromChapter = async (req, res, next) => {
@@ -7,7 +8,7 @@ export const getAllCommentsFromChapter = async (req, res, next) => {
 
     // Paginación
     const page = parseInt(req.query.page) || 1;
-    const limit = 4;
+    const limit = 1000;
 
     const skip = (page - 1) * limit;
 
@@ -19,6 +20,7 @@ export const getAllCommentsFromChapter = async (req, res, next) => {
 
     const comments = await Comment.find(query)
       .populate({path: "user_id"})
+      .populate({path: "replies_id"})
       .sort({ createdAt: "desc" })
       .skip(skip)
       .limit(limit)
@@ -29,7 +31,7 @@ export const getAllCommentsFromChapter = async (req, res, next) => {
 
     // Calcula el número de páginas
     const totalPages = Math.ceil(totalComments / limit);
-
+    
     return res.status(200).json({
       success: true,
       response: {

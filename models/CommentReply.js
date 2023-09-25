@@ -9,8 +9,8 @@ let schema = new Schema({
         required: true,
         ref: 'comments'
     },
-    email:{
-        type: String,
+    user_id:{
+        type: Types.ObjectId,
         required: true,
         ref: 'users'
     },
