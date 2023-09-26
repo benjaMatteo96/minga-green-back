@@ -7,7 +7,7 @@
 const updateController = async (req, res) => {
 
     try {
-        // Paso 1: Obteniendo  el usuario a modificar del middleware finds_id
+        // paso 1:Obteniendo  el usuario a modificar del middleware finds_id
         const userToModify = req.author;
         console.log(userToModify)
         if (!userToModify) {
