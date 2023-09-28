@@ -3,7 +3,7 @@ import Manga from '../models/Manga.js';
 export default async function is_property_of(req, res, next) {
   try {
     let mangaFind = await Manga.findOne({ _id: req.query.manga_id });
-    console.log('mangaFinddddd',mangaFind)
+   // console.log('mangaFinddddd',mangaFind)
     
     if (!mangaFind) {
       return res.json({

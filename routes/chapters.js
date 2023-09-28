@@ -25,7 +25,7 @@ router.get('/:id', readOneChapters);
 
 router.post('/', passport.authenticate('jwt', { session: false }), addCoverPhoto, validator(chapterValidator), createChapters);
 
-// Nueva ruta para 
+// Nueva ruta para editar
 router.put('/:id', passport.authenticate('jwt', { session: false }), find_id, is_active, isPropertyOf, validator(validatorChapter), updateChapter);
 //Orden para PUT en Postman: api/chapters/id-de-chapter?manga_id=id-de-manga
 

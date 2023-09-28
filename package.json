@@ -9,7 +9,8 @@
     "data": "node ./models/data/data.js",
     "author": "node ./models/data/authors.js",
     "users": "node ./models/data/users.js",
-    "categories": "node ./models/data/categories.js"
+    "categories": "node ./models/data/categories.js",
+    "build": "webpack --mode=development"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -22,6 +23,7 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-validator": "^7.0.1",
+    "firebase": "^10.4.0",
     "http-errors": "~1.6.3",
     "joi": "^17.10.1",
     "joi-oid": "^1.1.2",
