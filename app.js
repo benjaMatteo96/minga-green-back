@@ -9,14 +9,15 @@ import logger from 'morgan';
 //// Importacion los middlewares
 import errorHandler from './middleware/error-handler.js'
 import notFoundHandler from './middleware/not-found-handler.js'
-
-
+//import {static as fileServer} from 'express'
+//import { urlArchivos } from './config/const.js';
 
 import indexRouter from './routes/index.js';
 /* import usersRouter from './routes/users.js'; */
 
 import { __dirname } from './utils.js'
 import { __filename } from './utils.js'
+
 
 const app = express();
 
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
-
+//app.use('/', fileServer(urlArchivos))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -60,33 +61,4 @@ app.use(function (err, req, res, next) {
 });
 
 export default app;
-
-/*  M01-nav . Modificar la navegación de la app para que:
-  Si el usuario está logueado:
-  /mangas/:page renderiza Mangas en la página que corresponda
-  en la barra de navegación agregar el botón correspondiente con el título Mangas
-Si el usuario no está logueado debe re-dirigir hacia NotAllowed	 */
-
-/* const isAuthenticated = checkUserAuthentication(req);
-if (isAuthenticated) {
-  // Renderizar la página de Mangas
-  res.render('mangas');
-} else {
-  // Redirigir al usuario no autenticado a la página de NotAllowed
-  res.redirect('/notallowed');
-}
-
-// Ruta para la página de NotAllowed
-app.get('/notallowed',
-  (req, res) => {
-    // Renderizar la página de NotAllowed
-    res.render('notallowed');
-  }); */
-
-
-// M01 enpoints (sprint3)//
-//enrutador para el registro de usuarios.//
-
-/*const express = require('express');
-const registerRouter = express.Router();*/
 

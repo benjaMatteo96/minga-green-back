@@ -9,7 +9,9 @@ import read from '../controllers/authors/read.js';
 import controllerAdmins from '../controllers/authors/admin.js';
 import updateController from '../controllers/authors/update.js';
 import findAuthorById from '../middleware/finds_id-admin.js';
-
+//import {uploadFile} from '../multer/upload.js'
+//import { upload } from '../controllers/authors/create.js';
+//import multer from '../middlewares/multer.js';
 
 const router = express.Router();
 
@@ -17,6 +19,8 @@ const router = express.Router();
 router.post(
   '/', // La ruta POST que manejará la creación de autores
   passport.authenticate('jwt', { session: false }), // Middleware de autenticación JWT
+/*   multer.single('file'),
+  upload, */
   validator(validadorAuthor), // Middleware de validación utilizando el validador
   hasPermission, // Middleware de permisos
   createOneAuthor // Controlador para crear un autor
