@@ -7,7 +7,7 @@ let getUsers = async (req, res, next) => {
             success: true,
             response: 'ok',
             message: 'hi',
-            users:allUsers
+            users: allUsers
         })
     } catch (error) {
         console.log(error)
@@ -15,13 +15,6 @@ let getUsers = async (req, res, next) => {
 }
 
 export default getUsers
-
-
-
-
-
-
-
 
 
 
