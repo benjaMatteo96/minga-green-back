@@ -1,5 +1,7 @@
 # minga-green-back
 ## Documentación de la API
+Aquí encontrarás información sobre cómo utilizar nuestros servicios.
+
 
 Puedes acceder a la documentación de la API [aquí](http://localhost:8000/api-doc/).
 
@@ -22,7 +24,7 @@ npm install
 Para ejecutar las pruebas, utiliza el siguiente comando:
 
 ```bash
-npm test
+npx mocha ./test
 
 
 
