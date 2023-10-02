@@ -2,9 +2,6 @@ import { expect } from 'chai';
 import app from '../app.js';
 import request from 'supertest';
 
-
-
-
 describe('set de test a /authors', () => {
 
     before(function (done) {
@@ -32,7 +29,7 @@ describe('set de test a /authors', () => {
 
         it('debería responder con status 500 en caso de error en la actualización', async () => {
             const response = await request(app)
-                .put('/authors/admin/64f3a96ad04f0f5ab5f37a66103')
+                .put('/authors/admin/64f3a96ad04f0f5ab5f37a66')
                 .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGYzYTg0YWMwMGU4OWQ0MTI3NWM5M2UiLCJlbWFpbCI6InNpbHZpbmFAbWguY29tLmFyIiwiaWF0IjoxNjk2MDA1OTYzLCJleHAiOjE2OTYwOTIzNjN9.7uribaq2z66eJg35uo9i_iCTrmeOHwmTzYwUtWkfShY')
 
             expect(response.status).to.be.equal(500);
