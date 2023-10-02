@@ -9,8 +9,6 @@ import read from '../controllers/authors/read.js';
 import controllerAdmins from '../controllers/authors/admin.js';
 import updateController from '../controllers/authors/update.js';
 import findAuthorById from '../middleware/finds_id-admin.js';
-
-
 const router = express.Router();
 
 // Ruta para crear un nuevo autor
