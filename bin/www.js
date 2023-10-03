@@ -8,17 +8,22 @@ import app from'../app.js';
 import logger from'debug'
 const debug = logger('minga-green-back:server');
 import http from'http';
+import { Server } from 'socket.io'
+import socket from '../controllers/socket/socket.js';
 
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '8080');
+const port = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 const server = http.createServer(app);
+
+const io = new Server(server, { cors: { origin: '*' } });
+socket(io);
 
 /**
  * Listen on provided port, on all network interfaces.
