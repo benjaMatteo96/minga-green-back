@@ -184,7 +184,7 @@ const router = express.Router();
 
 router.get('/', getUser);
 router.post('/signin', validator(userSchema), signinController);
-router.post('/signout', validator(userSchema), passport.authenticate(
+router.post('/signout', passport.authenticate(
   'jwt',
   { session: false }
 ), signout)
