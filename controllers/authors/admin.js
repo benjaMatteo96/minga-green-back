@@ -8,7 +8,7 @@ const controllerAdmins = async (req, res) => {
     try {
 
         // Verificar si el usuario autenticado tiene permisos de administrador
-        if (!req.user || req.user.role !== 'admin') {
+        if (!req.user || req.user.role !== 3) {
             return res.status(403).json({ message: 'Acceso denegado. Se requieren permisos de administrador.' });
         }
 
