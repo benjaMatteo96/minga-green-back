@@ -12,14 +12,13 @@ import create from '../controllers/mangas/create.js';
 import findCategory from '../middleware/findCategory.js'
 import mangaValidationSchema from '../schema/mangaSchema.js';
 
-
 const router = express.Router();
 
 router.get('/', getAllMangas );
 router.get('/:id', readOneManga);
 router.get('/news', readNews);
 router.post(
-    '/', 
+    '/',   
     passport.authenticate('jwt', { session: false }),
     validator(validatorMangaSchema), 
     findCategory, createManga 

@@ -1,17 +1,21 @@
+// Importa los módulos necesarios, incluido multer
 import express from 'express';
 import createOneAuthor from '../controllers/authors/create.js'; // Importa la función para crear autores
 import validadorAuthor from '../schema/validatorAuthor.js'; // Importa el validador de autor
 import validator from '../middleware/validator.js'; // Importa el middleware de validación
 import passport from '../middleware/passport.js'; // Importa el middleware de autenticación
-import hasPermission from '../middleware/has_permition.js';// Importa el middleware de permisos
+import hasPermission from '../middleware/has_permition.js'; // Importa el middleware de permisos
 import readAuthors from '../controllers/authors/read_me.js';
 import read from '../controllers/authors/read.js';
 import controllerAdmins from '../controllers/authors/admin.js';
 import updateController from '../controllers/authors/update.js';
 import findAuthorById from '../middleware/finds_id-admin.js';
-//import {uploadFile} from '../multer/upload.js'
-//import { upload } from '../controllers/authors/create.js';
-//import multer from '../middlewares/multer.js';
+import { uploadFile } from "../fireBase/firebaseConfig.js"
+
+
+// Configura multer
+import multer from 'multer';
+const upload = multer();
 
 const router = express.Router();
 
@@ -19,8 +23,8 @@ const router = express.Router();
 router.post(
   '/', // La ruta POST que manejará la creación de autores
   passport.authenticate('jwt', { session: false }), // Middleware de autenticación JWT
-/*   multer.single('file'),
-  upload, */
+  upload.single('file'), // Middleware de Multer para manejar un solo archivo (con el nombre 'fileInput')
+
   validator(validadorAuthor), // Middleware de validación utilizando el validador
   hasPermission, // Middleware de permisos
   createOneAuthor // Controlador para crear un autor
@@ -36,16 +40,13 @@ router.get('/api/authors/admin',
   controllerAdmins
 );
 
-//M03-ENDPOINTSH(SPRINT4 ) 
-//Ruta PUT para modificar el rol de un usuario común a autor
+// M03-ENDPOINTSH(SPRINT4) 
+// Ruta PUT para modificar el rol de un usuario común a autor
 
 router.put('/api/auth/role/author/:id',
   passport.authenticate('jwt', { session: false }), // Autenticación con Passport.js
   findAuthorById, // Middleware para buscar el ID del usuario a modificar
   updateController // controlador para cambiar el rol//
 );
+
 export default router;
-
-/* border bottom 
-outline*/
-

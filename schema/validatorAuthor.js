@@ -24,7 +24,7 @@ const validadorAuthor = joi.object({
     'string.min': 'The date must be at least {#limit} characters.',
     'string.max': 'The date must not exceed {#limit} characters.',
   }),
-  photo: joi.string().uri().min(10).max(200).required().messages({
+  photo: joi.string().uri().min(10).max(500).required().messages({
     'string.uri': 'The photo URL is not valid.',
     'string.min': 'The photo URL must be at least {#limit} characters.',
     'string.max': 'The photo URL must not exceed {#limit} characters.',
