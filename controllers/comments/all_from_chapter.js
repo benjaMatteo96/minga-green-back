@@ -8,7 +8,7 @@ export const getAllCommentsFromChapter = async (req, res, next) => {
 
     // Paginación
     const page = parseInt(req.query.page) || 1;
-    const limit = 1000;
+    const limit = 4;
 
     const skip = (page - 1) * limit;
 
