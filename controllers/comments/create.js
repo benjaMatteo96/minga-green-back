@@ -1,4 +1,5 @@
 import Comment from "../../models/Comment.js";
+import User from "../../models/User.js";
 
 export const createComment = async (req, res, next) => {
   try {
@@ -9,6 +10,12 @@ export const createComment = async (req, res, next) => {
     });
 
     await newComment.save();
+
+    // Obtén el usuario que creó el comentario
+    const user = await User.findById(req.user._id).select("photo email");
+
+    newComment.user_id = user;
+
     return res.status(201).json({
       success: true,
       response: newComment,

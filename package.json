@@ -9,10 +9,13 @@
     "data": "node ./models/data/data.js",
     "author": "node ./models/data/authors.js",
     "users": "node ./models/data/users.js",
-    "categories": "node ./models/data/categories.js"
+    "categories": "node ./models/data/categories.js",
+    "test": "mocha ./test/chat.test.js"
   },
   "dependencies": {
+    "@google-cloud/dialogflow": "^6.1.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/dialogflow": "^4.0.4",
     "add": "^2.0.6",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -29,6 +32,7 @@
     "joi": "^17.10.1",
     "joi-oid": "^1.1.2",
     "jsonwebtoken": "^9.0.2",
+    "mocha": "^10.2.0",
     "mercadopago": "^1.5.17",
     "mongoose": "^7.5.0",
     "morgan": "~1.9.1",
@@ -38,7 +42,11 @@
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "pug": "^3.0.2",
-    "react-redux": "^8.1.2"
+    "react-redux": "^8.1.2",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
+    "supertest": "^6.3.3"
+   
   },
   "devDependencies": {
     "chai": "^4.3.10",
