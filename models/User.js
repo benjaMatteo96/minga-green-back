@@ -10,7 +10,7 @@ let schema = new Schema({
   photo: { type: String, required: true },
   role: { type: Number, default: 0 },
   online: { type: Boolean, default: false }, /* Cuando se conecta cambia a true */
-  verified: { type: Boolean, default: true },
+  verified: { type: Boolean, default: false },
   verify_code: { type: String, }
 }, {
   timestamps: true /* fecha de documentos */
