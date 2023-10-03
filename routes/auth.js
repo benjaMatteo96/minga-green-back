@@ -18,6 +18,170 @@ import {deleteUser} from '../controllers/users/delete.js'//eliminar
 
 const router = express.Router();
 
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: The user name
+ *         age:
+ *           type: integer
+ *           description: The user age
+ *         email:
+ *           type: string
+ *           description: The user email
+ *       required:
+ *         - name
+ *         - age
+ *         - email
+ *       example:
+ *         name: Alan Kay
+ *         age: 70
+ *         email: alan@email.com
+ */
+
+/**
+ * @swagger
+ * /api/auth:
+ *   post:
+ *     summary: Create a new user
+ *     tags:
+ *       - user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: New user created!
+ */
+
+/**
+ * @swagger
+ * /api/auth:
+ *   get:
+ *     summary: Return all users
+ *     tags:
+ *       - user
+ *     responses:
+ *       200:
+ *         description: All users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *         example:
+ *           - name: Alan Kay
+ *             age: 70
+ *             email: alan@email.com
+ *       404:
+ *         description: User not found
+ */
+
+
+
+/**
+ * @swagger
+ * /api/auth/{id}:
+ *   get:
+ *     summary: Return a user
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description:  all users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               $ref: '#/components/schemas/User'
+ *         example:
+ *           id: 1
+ *           name: Alan Kay
+ *           age: 70
+ *           email: alan@email.com
+ *       404:
+ *         description:  User not found
+ */
+
+
+/**
+ * @swagger
+ * /api/auth/{id}:
+ *   delete:
+ *     summary: Delete a user
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description: User deleted
+ *         content:
+ *           application/json:
+ *             example:
+ *               id: 1
+ *               name: Alan Kay
+ *               age: 70
+ *               email: alan@email.com
+ *       404:
+ *         description: User not found
+ */
+
+
+/**
+ * @swagger
+ * /api/auth/{id}:
+ *   put:
+ *     summary: Update a user
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *         content:
+ *           application/json:
+ *             example:
+ *               id: 1
+ *               name: Alan Kay
+ *               age: 70
+ *               email: alan@email.com
+ *       404:
+ *         description: User not found
+ */
+
+
 router.get('/', getUser);
 router.post('/signin', validator(userSchema), signinController);
 router.post('/signout', passport.authenticate(

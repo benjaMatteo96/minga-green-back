@@ -15,7 +15,6 @@ import is_active from '../middleware/is_active_m01.js';
 import isPropertyOf from '../middleware/is_property_off_benja.js';
 import updateMangaSchema from '../schema/updateValidatorManga.js';
 import destroyManga from '../controllers/mangas/destroy.js';
-
 import create from '../controllers/mangas/create.js';
 import findCategory from '../middleware/findCategory.js'
 import mangaValidationSchema from '../schema/mangaSchema.js';
