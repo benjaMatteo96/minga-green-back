@@ -38,6 +38,8 @@ router.get('/', getUser); //leer
 router.post('/register', validator(estructuraUser), registerUser); //crear
 
 
+
+
 export default router;
 
 
