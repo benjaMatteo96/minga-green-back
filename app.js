@@ -9,8 +9,31 @@ import logger from 'morgan';
 //// Importacion los middlewares
 import errorHandler from './middleware/error-handler.js'
 import notFoundHandler from './middleware/not-found-handler.js'
-//import {static as fileServer} from 'express'
-//import { urlArchivos } from './config/const.js';
+
+//swagger
+import swaggerUI from "swagger-ui-express"
+import swaggerJsDoc from "swagger-jsdoc"
+//  objeto, donde le pasamos la configuracion inicial//
+const swaggerSpec = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Node MongoDB API",
+      version: "1.0.0"
+    },
+    servers: [
+      {
+        url: "http://localhost:8000",
+      }
+    ]
+
+  },
+  apis: [`${path.join(__dirname, "./routes/*.js")}`],
+}
+
+//middleware//
+
+
 
 import indexRouter from './routes/index.js';
 /* import usersRouter from './routes/users.js'; */
@@ -31,6 +54,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// /api-doc es la ruta donde me muestra la documentacion//
+app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
+
 
 
 app.use('/', indexRouter);

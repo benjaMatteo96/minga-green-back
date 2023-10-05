@@ -1,16 +1,27 @@
 import { Schema, model, Types } from "mongoose";
 
+
+
 let collection = 'comments'
 let schema = new Schema({
+    manga_id:{
+        type: Types.ObjectId,
+        ref: 'mangas'
+    },
     chapter_id:{
         type: Types.ObjectId,
-        required: true
+        ref: 'Chapter'
     },
     user_id:{
         type: Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'users'
     },
     text:{type:String,required: true},
+    replies_id: {
+        type: Types.ObjectId,
+        ref: 'reply'
+    }
 }, {
     timestamps:true
 })

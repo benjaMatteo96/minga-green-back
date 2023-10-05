@@ -1,13 +1,19 @@
 import Chapter from '../../models/Chapter.js';
+import mongoose from 'mongoose';
 
 const updateChapter = async (req, res) => {
     const { id } = req.params;
+    console.log('este es el id de param', id)
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'El ID proporcionado no es válido' });
+    }
   try {
       
     // Buscar el capítulo por su ID
     const chapter = await Chapter.findOneAndUpdate(
       {_id:id}, 
-      req.body,
+      console.log('kadjjdjskjkjsdkjsd',req.body),
+      req.body
       //{new : true} //Me devuelve el modificado si lo comento me devuelve el anterior
       )
       
