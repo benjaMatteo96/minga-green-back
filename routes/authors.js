@@ -6,11 +6,7 @@ import passport from '../middleware/passport.js'; // Importa el middleware de au
 import hasPermission from '../middleware/has_permition.js';// Importa el middleware de permisos
 import readAuthors from '../controllers/authors/read_me.js';
 import read from '../controllers/authors/read.js';
-<<<<<<< HEAD
 import controllerAdmins from '../controllers/authors/admin.js'
-=======
-import controllerAdmins from '../controllers/authors/admin.js';
->>>>>>> 97285936507c3c6deeb27522f7b9dea0369dfcbc
 import updateController from '../controllers/authors/update.js';
 import findAuthorById from '../middleware/finds_id-admin.js';
 const router = express.Router();
